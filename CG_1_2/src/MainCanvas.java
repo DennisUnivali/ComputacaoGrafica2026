@@ -102,7 +102,7 @@ public class MainCanvas extends JPanel implements Runnable{
 //			e1.printStackTrace();
 //		}
 		
-		imgtmp = loadImage("fundo.jpg");
+		imgtmp = loadImage("gato.jpg");
 		
 		imageBuffer = new BufferedImage(640,480, BufferedImage.TYPE_4BYTE_ABGR);
 		//imageBuffer.getGraphics().drawImage(imgtmp, 0, 0, null);
@@ -311,6 +311,17 @@ public class MainCanvas extends JPanel implements Runnable{
 //				bufferDeVideo[pixb+3] = (byte)(res&0xff);
 				
 				
+//				int b = (imgBuffer[pixi+1]&0xff);
+//				int g =	(imgBuffer[pixi+2]&0xff);
+//				int r = (imgBuffer[pixi+3]&0xff);
+//				
+//				int media = (int)255-(((b+g+r)/3));
+//				media = Math.min(255, media);
+//				
+//				b = media;
+//				g = media;
+//				r = media;
+				
 				int b = (imgBuffer[pixi+1]&0xff);
 				int g =	(imgBuffer[pixi+2]&0xff);
 				int r = (imgBuffer[pixi+3]&0xff);
@@ -318,7 +329,7 @@ public class MainCanvas extends JPanel implements Runnable{
 				b = (int)(b*fb);
 				g = (int)(g*fg);
 				r = (int)(r*fr);
-				
+//				
 				b = Math.min(255, b);
 				g = Math.min(255, g);
 				r = Math.min(255, r);
@@ -336,11 +347,33 @@ public class MainCanvas extends JPanel implements Runnable{
 			bufferDeVideo[i] = 0;
 		}
 		
+		
+		
+//		for(int j = 0; j < H;j++) {
+//			for(int i = 0; i < W;i++) {
+//				int pos = i*4+W*4*j;
+//				bufferDeVideo[pos] = (byte)255;
+//				bufferDeVideo[pos+1] = (byte)0;
+//				bufferDeVideo[pos+2] = (byte)128;
+//				bufferDeVideo[pos+3] = (byte)255;
+//			}
+//		}
+//		
+//		for(int i = 0; i < 100;i++) {
+//			int p0 = 50*4+W*4*100;
+//			int pos = p0+i*4;
+//			bufferDeVideo[pos] = (byte)255;
+//			bufferDeVideo[pos+1] = (byte)255;
+//			bufferDeVideo[pos+2] = (byte)0;
+//			bufferDeVideo[pos+3] = (byte)0;
+//		}
+		
 		drawImageToBuffer(imgtmp,(int)posx,(int)posy,filtroR,filtroG,filtroB);
 		
-		//desenhaLinhaHorizontal((int)posx-100,(int)posy,200);
 		
-		//desenhaLinhaVertical((int)posx,(int)posy-100,200);
+		desenhaLinhaHorizontal((int)10,(int)100,400);
+		
+		desenhaLinhaVertical((int)10,(int)20,200);
 		
 		
 		
@@ -375,16 +408,12 @@ public class MainCanvas extends JPanel implements Runnable{
 //		g.setColor(Color.black);
 //		g.drawLine(0, 0, 640, 480);
 		
-		//g.drawImage(imageBuffer,0,0,null);
+		g.drawImage(imageBuffer,0,0,null);
 		
 		//g.setColor(Color.BLUE);
 		//g.drawLine(clickX, clickY, mouseX, mouseY);
 		
-		g.setColor(Color.blue);
-		g.fillRect((int)q1x,(int)q1y, 10, 10);
-		
-		g.setColor(new Color(0,128,0));
-		g.fillRect((int)q2x,(int)q2y, 10, 10);
+
 		
 		g.setColor(Color.black);
 		g.drawString("FPS "+fps+" mouse: "+mouseX+","+mouseY, 10, 25);
@@ -498,6 +527,7 @@ public class MainCanvas extends JPanel implements Runnable{
 			}
 		}
 	}
+	
 	
 	public BufferedImage loadImage(String filename) {
 		try {
