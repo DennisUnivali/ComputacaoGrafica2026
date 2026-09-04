@@ -70,6 +70,7 @@ public class MainCanvas extends JPanel implements Runnable{
 	ArrayList<Linha2D> linhas = new ArrayList<Linha2D>();
 	
 	Ponto2D p0 = null;
+	Ponto2D pC = new Ponto2D(320, 240);
 	
 	public MainCanvas() {
 		
@@ -190,13 +191,17 @@ public class MainCanvas extends JPanel implements Runnable{
 				if(key == KeyEvent.VK_Q) {
 					RIGHT = true;
 					for(int i = 0; i < linhas.size();i++) {
+						linhas.get(i).translate(-pC.X, -pC.Y);
 						linhas.get(i).rotate((float)(Math.PI/16));
+						linhas.get(i).translate(pC.X, pC.Y);
 					}
 				}
 				if(key == KeyEvent.VK_E) {
 					RIGHT = true;
 					for(int i = 0; i < linhas.size();i++) {
+						linhas.get(i).translate(-pC.X, -pC.Y);
 						linhas.get(i).rotate((float)(-Math.PI/16));
+						linhas.get(i).translate(pC.X, pC.Y);
 					}
 				}
 			}
@@ -215,14 +220,19 @@ public class MainCanvas extends JPanel implements Runnable{
 				clickX = e.getX();
 				clickY = e.getY();
 				
-				if(p0==null) {
-					p0 = new Ponto2D(clickX, clickY);
-				}else {
-					linhas.add(new Linha2D(p0.X, p0.Y, clickX, clickY));
-					p0 = null;
+				if(e.getButton()==1) {
+				
+					if(p0==null) {
+						p0 = new Ponto2D(clickX, clickY);
+					}else {
+						linhas.add(new Linha2D(p0.X, p0.Y, clickX, clickY));
+						p0 = null;
+					}
+				}else if(e.getButton()==3) {
+					pC = new Ponto2D(clickX, clickY);
 				}
 				
-				System.out.println("CLICO ");
+				System.out.println("CLICO "+e.getButton());
 			}
 			
 			@Override
@@ -320,6 +330,11 @@ public class MainCanvas extends JPanel implements Runnable{
 		g.setColor(Color.red);
 		if(p0!=null) {
 			g.drawLine((int)p0.X, (int)p0.Y, mouseX, mouseY);
+		}
+		
+		g.setColor(Color.BLUE);
+		if(pC!=null) {
+			g.fillRect((int)pC.X-2, (int)pC.Y-2, 5, 5);
 		}
 		
 
