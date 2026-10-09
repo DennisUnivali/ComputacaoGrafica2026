@@ -334,10 +334,10 @@ public class MainCanvas extends JPanel implements Runnable{
 			listaDeTriangulos.add(tri);
 		}
 		
-		obj1.loadObj("C:\\OneDrive\\OneDrive - UNIVALI\\DISCIPLINAS\\Disciplina Computação Grafica - CCO\\objs\\chair_01.obj");
-		obj1.modelScale(1000);
-		//obj1.loadObj("C:\\OneDrive\\OneDrive - UNIVALI\\DISCIPLINAS\\Disciplina Computação Grafica - CCO\\objs\\Mig_29_obj.obj");
-		//obj1.modelScale(10);
+		//obj1.loadObj("..\\..\\..\\objs\\chair_01.obj");
+		//obj1.modelScale(1000);
+		obj1.loadObj("..\\..\\..\\objs\\Mig_29_obj.obj");
+		obj1.modelScale(10);
 		//obj1.loadObj("C:\\OneDrive\\OneDrive - UNIVALI\\DISCIPLINAS\\Disciplina Computação Grafica - CCO\\objs\\Cat_v1_L3\\12222_Cat_v1_l3.obj");
 		//obj1.modelScale(10);
 	}
